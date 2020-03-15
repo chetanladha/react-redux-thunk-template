@@ -1,32 +1,58 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import {connect} from "react-redux";
-import requestDummyAction from "./actions/requestDummyAction";
+import {
+  BrowserRouter as Router,
+  Link,
+  Switch,
+  Route
+} from "react-router-dom";
+import Home from "./components/Home";
+import Product from "./components/Product";
+import Topic from "./components/Topic";
 
-function App({isLoading, data, error, requestDummyAction}) {
-  return (
+const App = () => 
     <div className="App">
-      Root Component
-      <div className="button-container">
-          <button onClick={requestDummyAction}>
-            {isLoading ? "Performing Action..." : "Perform Action"}
-          </button>
-        <p>
-            Action Status: {isLoading? "In Progress" : error? "Error" : data ? "Success" : "Not Started"}
-        </p>
-      </div>
+        <Router>
+            <ul>
+                <li>
+                    <Link to="/">
+                        Home
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/product">
+                        Product
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/topic">
+                        Topic
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/abrakadabra">
+                        Unknown
+                    </Link>
+                </li>
+            </ul>
+            <Switch>
+                <Route exact path="/">
+                    <Home />
+                </Route>
+                <Route path="/product">
+                    <Product />
+                </Route>
+                <Route path="/Topic">
+                    <Topic />
+                </Route>
+                <Route path="*">
+                    <div>
+                        404 Not Found
+                    </div>
+                </Route>
+            </Switch>
+        </Router>
     </div>
-  );
-}
 
-export default connect(
-  state => ({
-    isLoading: state.dummy.isLoading,
-    data: state.dummy.data,
-    error: state.dummy.error
-  }),
-  {
-    requestDummyAction
-  }
-)(App);
+export default App;
