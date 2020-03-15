@@ -10,32 +10,54 @@ import {
 import Home from "./components/Home";
 import Product from "./components/Product";
 import Topic from "./components/Topic";
+import styled from "styled-components";
+
+const Nav = styled.ul`
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+`;
+
+const NavLink = styled.li`
+    display: inline-block;
+    margin: 5px;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: white;
+    padding: 0.25rem 0.5rem;
+    outline: none;
+`;
+
+const RouterLink = styled(Link)`
+    color: white;
+    text-decoration: none;
+`;
 
 const App = () => 
     <div className="App">
         <Router>
-            <ul>
-                <li>
-                    <Link to="/">
+            <Nav>
+                <NavLink>
+                    <RouterLink to="/">
                         Home
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/product">
+                    </RouterLink>
+                </NavLink>
+                <NavLink>
+                    <RouterLink to="/product">
                         Product
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/topic">
+                    </RouterLink>
+                </NavLink>
+                <NavLink>
+                    <RouterLink to="/topic">
                         Topic
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/abrakadabra">
+                    </RouterLink>
+                </NavLink>
+                <NavLink>
+                    <RouterLink to="/abrakadabra">
                         Unknown
-                    </Link>
-                </li>
-            </ul>
+                    </RouterLink>
+                </NavLink>
+            </Nav>
             <Switch>
                 <Route exact path="/">
                     <Home />
